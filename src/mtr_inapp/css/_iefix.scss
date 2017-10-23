@@ -1,0 +1,29 @@
+body[browser='ie'] table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+    tr {
+        &+tr {
+            th {
+                border-top: 1px solid #fff;
+            }
+        }
+        th,
+        td {
+            position: static;
+            padding: 10px 15px;
+        }
+    }
+    #backtotop {
+        right: 30px;
+        bottom: 30px
+    }
+    .tableBox {
+        table {
+            width: calc(100% - 2px)
+        }
+    }
+}
+
+body {
+    overflow-x: hidden
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7  " lang="en" <![endif] -->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8  " lang="en"> <![endif] -->
+<!--[if IE 8]>         <html class="no-js lt-ie9  " lang="en"> <![endif] -->
+<!--[if gt IE 8]><! -->
+<html class="no-js" lang="en">
+<!--<![endif] -->
+
+<head>
+    <title>EV - </title>
+    @@include('./../include/css.html') @@include('./../include/libs.html') @@include('./../include/plugin.html')
+
+
+    <script charset="UTF-8" type="text/javascript">
+    var parser = new UAParser();
+    var result = parser.getResult();
+
+    // by default it takes ua string from current browser's window.navigator.userAgent
+    jQuery(function() {
+
+        $(".data_browser .value").html(result.browser.name + ", " + result.browser.version)
+        $(".data_device .value").html(result.device.model + ", " + result.device.type + ", " + result.device.vendor)
+        $(".data_os .value").html(result.os.name)
+        $(".data_version .value").html(result.os.version)
+        $(".data_engine .value").html(result.engine.name + ", " + result.engine.version)
+    })
+
+
+
+    var gl = navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position)
+            latvalue = position.coords.latitude
+            lngvalue = position.coords.longitude
+            // if (latvalue.length == 0) {
+            //     latvalue = 22.384793
+            // }
+            // if (lngvalue.length == 0) {
+            //     lngvalue = 114.118509
+            // }
+            var html = latvalue + " " + lngvalue;
+
+            $('.data_location .value').html(html)
+        },
+        function() {
+            // if (latvalue.length == 0) {
+            //     latvalue = 22.384793
+            // }
+            // if (lngvalue.length == 0) {
+            //     lngvalue = 114.118509
+            // }
+
+            var html = "location not enabled";
+            $('.data_location .value').html(html)
+        })
+
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <style>
+    th,
+    td {
+        padding: 5px
+    }
+
+    tr:nth-child(even) {
+        background: #eee
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FAFAFA;
+    }
+
+    </style>
+</head>
+
+<body class=" ">
+    <div class="layout-page main-container">
+        <div class="main-content">
+            <div class="main-content__inner">
+                <div class="section" style="padding:15px">
+                    <table style="width:100%">
+
+                        <tr class="data_location">
+                            <td>Location:</td>
+                            <td class="value"> </td>
+                        </tr>
+                        <tr class="data_browser">
+                            <th colspan="2">Device Checking</th>
+
+                        </tr>
+                        <tr class="data_browser">
+                            <td>Browser: </td>
+                            <td class="value"> </td>
+                        </tr>
+                        <tr class="data_device">
+                            <td>Device:</td>
+                            <td class="value"> </td>
+                        </tr>
+                        <tr class="data_os">
+                            <td>OS:</td>
+                            <td class="value"> </td>
+                        </tr>
+                        <tr class="data_version">
+                            <td>Version:</td>
+                            <td class="value"> </td>
+                        </tr>
+                        <tr class="data_engine">
+                            <td>Engine:</td>
+                            <td class="value"> </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+
+</html>

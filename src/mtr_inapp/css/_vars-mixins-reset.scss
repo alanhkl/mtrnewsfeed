@@ -1,0 +1,223 @@
+// #############################
+// FONTS
+// #############################
+// @font-face {
+//     font-family: 'Franklin Gothic Book';
+//     src: url(../fonts/franklin-gothic-book.eot);
+//     src: url('../fonts/franklin-gothic-book.eot?#iefix') format('embedded-opentype'),
+//          url('../fonts/franklin-gothic-book.woff2') format('woff2'),
+//          url('../fonts/franklin-gothic-book.woff') format('woff'),
+//          url('../fonts/franklin-gothic-book.ttf') format('truetype'),
+//          url(../fonts/franklin-gothic-book.svg#FranklinGothic-Book') format('svg);
+//     font-weight: normal;
+//     font-style: normal;
+// }
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('RobotoCondensed-Regular-webfont-webfont.eot');
+    src: url('RobotoCondensed-Regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('RobotoCondensed-Regular-webfont-webfont.woff2') format('woff2'),
+         url('RobotoCondensed-Regular-webfont-webfont.woff') format('woff'),
+         url('RobotoCondensed-Regular-webfont-webfont.ttf') format('truetype'),
+         url('RobotoCondensed-Regular-webfont-webfont.svg#webfontregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+$font-default: 'Roboto Condensed',Arial,Microsoft JhengHei,sans-serif;
+
+// #############################
+// GLOBAL WIDTHS
+// #############################
+$layout-maxwidth: 1680px;
+// $content-maxwidth: 960px;
+$content-maxwidth: 1080px;
+// $content-maxwidth: 960px;
+$layout-minwidth: 320px;
+$content-minwidth: 0px;
+
+//globel breakpoint
+$desktop: "(min-width: 960px )" !default;
+$tablet: "(min-width: 760px ) and (max-width:959.9px )" !default;
+$desktop_below: "(max-width: 959.9px )" !default;
+$mobile: "(max-width: 759.9px  )" !default;
+$mobile_above: "(min-width: 759.9px  )" !default;
+$s_mobile: "(max-width: 576px)" !default;
+
+//breakpoint for header
+$bp_header:"(min-width: 1024px )" !default;
+$bp_mobheader: "(max-width: 1023.9px )" !default;
+
+// #############################
+// COLORS
+// #############################
+$color-white: #ffffff;
+$color-black: #000000;
+
+$color-grey01: #eeeeee;
+$color-grey02: #cccccc;
+$color-grey03: #aaaaaa;
+$color-grey04: #888888;
+$color-grey05: #666666;
+$color-grey06: #444444;
+$color-grey07: #222222;
+
+$color-orange01: #ffe8c8;
+$color-orange02: #ffb24a;
+$color-orange03: #fd980f;
+$color-orange04: #e3890e;
+$color-orange05: #cd7805;
+$color-orange06: #f9b73c;
+
+$color-blue01: #55b1e5;
+$color-blue02: #018ad8;
+$color-blue03: #0033a0;
+$color-blue04: #0089d7;
+
+$color-red01: #E56E5A;
+$color-red02: #CD0510;
+
+// $color-blue01:                     #446e9e;
+// $color-blue02:                     #22374f;
+$color-green01: #83c150;
+$color-green02: #00b478;
+// $color-green02:                    #5b8738;
+// #############################
+// MIXINS
+// #############################
+// #############################
+// ANIMATION TIME
+// #############################
+$time-hover: 200ms;
+$time-transition: 500ms;
+
+// #############################
+// RESET
+// #############################
+html {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    border: none;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+// #############################
+// BGC
+// #############################
+.bgc-grey02 {
+    background-color: $color-grey02;
+}
+
+$font-default:'Roboto Condensed',
+Arial,
+Microsoft JhengHei,
+sans-serif;
+$base-font-family_en: 'Roboto Condensed',
+Arial,
+Microsoft JhengHei,
+sans-serif;
+$base-font-family_tc: 'Roboto Condensed',
+Arial,
+Microsoft JhengHei,
+sans-serif;
+$base-font-family_sc: 'Roboto Condensed',
+Arial,
+Microsoft JhengHei,
+sans-serif;
+$base-font-family: $base-font-family_en;
+
+// font-size
+$fz-banner: 60px;
+$fz-title: 32px;
+$fz-subtitle: 18px;
+$fz-content: 14px;
+$fz-remark: 12px;
+
+$lh-banner: 1.2;
+$lh-title: 1.2;
+$lh-subtitle: 1.2;
+$lh-content: 1.2;
+
+$fz-banner_m: 36px;
+$fz-title_m: 24px;
+$fz-subtitle_m: 18px;
+$fz-content_m: 14px;
+$fz-remark_m: 12px;
+
+$lh-banner_m: 1.2;
+$lh-title_m: 1.2;
+$lh-subtitle_m: 1.2;
+$lh-content_m: 1.2;
+
+// COLORS
+$white: #ffffff;
+$black: #000000;
+$color_blue: #000;
+
+// $color_main_green5 :#046839;
+$em-base: 16px !default;
+
+//Font for _reset.scss
+$base-font-size:100% !default;
+$base-font-line-height: 1 !default;
+
+$base-font-color: #222 !default;
+$base-font-link-color: #1a0dab !default;
+$base-font-hover-color: #1a0dab !default;
+$base-font-visited-color: #609 !default;
+$base-font-selection-color: #fff !default;
+$base-font-selection-background: #4285F4 !default;
+$mobile-font-hightlight-color: rgba(0, 0, 0, 0) !default;
+
+//Input for _reset.scss
+$base-input-background-color: #f6f6f6 !default;
+
+// checkbox for _common.scss
+$base-checkbox-img: none;
+$base-checkbox-size: 0px;
+
+// select for _common.scss
+$base-select-background-color: #ffffff;
+$base-select-font-color: #000000;
+$base-select-border: 0;
+$base-select-arrow-img: '';
+$base-select-arrow-size: 0;
+
+// text input box for _common.scss
+$base-textbox-background-color:none;
+$base-textbox-font-color: #000000;
+$base-textbox-border-color: (#cccccc, #000000);
+$base-textbox-border-style: 1px solid;
+
+// viewpoit size for _utils.scss
+$base-viewport-width:1024px !default;
+$base-viewport-height:768px !default;
+
+//CSS3 for _reset.scss
+$pie-path:"/lib/vendor/iefix/PIE/PIE.htc" !default;
+$default-prefixes:webkit moz o ms !default;
+
+$borderradius--button:5px;
+$borderradius--input:5px;
+$borderradius--card:5px;
+
+//AJAX for _common.scss
+$ajax-loader-gif:"ev_inappweb/images/ajax-loader.gif" !default;
+
+//layout
+$button-height--homemapsearch: 60px;
+$button-width--homemapsearch:$button-height--homemapsearch;

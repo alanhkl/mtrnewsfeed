@@ -1,0 +1,616 @@
+// #############################
+// SELECTBOXIT
+// #############################
+.selectboxit-container * {
+    font-family: $base-font-family !important;
+}
+
+.selectboxit-container .selectboxit-options {
+    border-radius: 0px !important
+}
+
+.selectboxit-option {
+    border-radius: 0px !important
+}
+
+.selectboxit-container {
+    select {
+        width: 100% !important;
+    }
+}
+
+.selectboxit-container span,
+.selectboxit-container .selectboxit-options a {
+    height: 60px !important;
+    line-height: 60px !important;
+}
+
+.selectboxit-list>.selectboxit-focus>.selectboxit-option-anchor {
+    color: #000000;
+    background-color: #fefefe !important;
+    background-image: none !important;
+}
+
+.selectboxit-list>.selectboxit-disabled>.selectboxit-option-anchor {
+    color: #999999;
+}
+
+.selectboxit-text {
+    max-width: calc(100% - 30px) !important;
+    width: 100%;
+    display: inline-block;height: 60px;
+}
+
+.selectboxit-rendering {
+    position: fixed !important;
+    clip: rect(1px 1px 1px 1px) !important;
+    /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px) !important;
+}
+
+.selectboxit-arrow-container {
+    width: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+// #############################
+// ICHECKBOX
+// #############################
+.icheckbox,
+.iradio {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    vertical-align: middle;
+    border: none;
+    background: url(/ev/images/icheck.png) 0 0 no-repeat; //  background-size: 200px 20px;
+    background-size: cover;
+    *display: inline;
+}
+
+.icheckbox {
+    background-position: 0 0;
+    float: left;
+    &+label {
+        float: right;
+
+        width: calc(100% - 25px);
+    }
+}
+
+.icheckbox.hover {
+    background-position: -20px 0;
+}
+
+.icheckbox.checked {
+    background-position: -40px 0;
+}
+
+.icheckbox.disabled {
+    cursor: default;
+    background-position: -60px 0;
+}
+
+.icheckbox.checked.disabled {
+    background-position: -80px 0;
+}
+
+.iradio {
+    background-position: -100px 0;
+}
+
+.iradio.hover {
+    background-position: -120px 0;
+}
+
+.iradio.checked {
+    background-position: -140px 0;
+}
+
+.iradio.disabled {
+    cursor: default;
+    background-position: -160px 0;
+}
+
+.iradio.checked.disabled {
+    background-position: -180px 0;
+}
+
+/* HiDPI support */
+
+@media (-o-min-device-pixel-ratio:5/4),
+(-webkit-min-device-pixel-ratio:1.25),
+(min-resolution:120dpi),
+(min-resolution:1.25dppx) {
+    .icheckbox,
+    .iradio {
+        background-image: url(/ev/images/icheckx2.png); //  background-size: 400px 40px;
+        background-size: cover;
+    }
+} // #############################
+// SLICK SLIDER
+// #############################
+.slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+    position: relative;
+    overflow: hidden;
+    display: block; //  margin: 0;
+    //  padding: 0;
+    // width: 100vw;
+    &:focus {
+        outline: none;
+    }
+    &.dragging {
+        cursor: pointer;
+        cursor: hand;
+    }
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: block;
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    .slick-loading & {
+        visibility: hidden;
+    }
+}
+
+.slick-slide {
+    float: left;
+    height: 100%;
+    min-height: 1px;
+    position: relative;
+    [dir="rtl"] & {
+        float: right;
+    }
+    img {
+        display: block;
+    }
+    &.slick-loading img {
+        display: none;
+    }
+    display: none;
+    &.dragging img {
+        pointer-events: none;
+    }
+    .slick-initialized & {
+        display: block;
+    }
+    .slick-loading & {
+        visibility: hidden;
+    }
+    .slick-vertical & {
+        display: block;
+        height: auto;
+        border: 1px solid transparent;
+    }
+}
+
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+.slick-prev,
+.slick-next {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 0;
+    border: none; // background-color: inherit;
+    z-index: 2;
+    cursor: pointer;
+    outline: none;
+    .icon {
+        position: relative;
+    }
+    &.slick-disabled {
+        opacity: .5
+    }
+}
+
+.slick-prev {
+    left: 0;
+    transform: scale(1);
+}
+
+.slick-next {
+    right: 0;
+} // .fullwidth {
+//     width: 100%;
+//     margin-left: auto;
+// 	margin-right: auto;
+// 	max-width: initial;
+// }
+.slider {
+    margin: 0;
+}
+
+.slider .slide {
+    width: 100%;
+    height: 100%;
+}
+
+.slick-prev {
+    left: 0; //  background: red;
+}
+
+.slick-next {
+    right: 0; //  background: red;
+}
+
+.slick-dots {
+    $dot-size: 15px; // top: 165px;
+    // left: 50%;
+    // position: absolute;
+    width: 100%;
+
+    margin-top: 17px;
+    padding: 10px 0;
+    text-align: center;
+    >li {
+        display: inline-block;
+
+        button {
+            padding: 0px;
+            font-size: 0px;
+            height: $dot-size;
+            width: $dot-size;
+            overflow: hidden;
+            background-color: $color-grey06;
+            @include border-radius(50%);
+        }
+        &.slick-active {
+            button {
+                background-color: $color-blue02;
+            }
+        }
+        +li {
+            margin-left: 1rem;
+        }
+    }
+}
+
+.slide {
+    height: 100%;
+    width: 100%;
+    background-size: cover !important;
+}
+
+.slick-slider {
+    height: 100%;
+}
+
+// .slick-slide{
+//     padding: 0 20px;
+// }
+section.carpark-detail {
+    .slick-arrow {
+        &:hover {
+            svg * {
+                fill: $color-grey06;
+            }
+        }
+        .svg {
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            * {
+                fill: $color-orange03;
+            }
+        }
+    }
+}
+
+section.awards {
+    .slick-arrow {
+        &:hover {
+            svg * {
+                fill: $color-orange03;
+            }
+        }
+        .svg {
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            * {
+                fill: $color-grey06;
+            }
+        }
+    }
+} // #############################
+// TOOLTIPS
+// #############################
+.tooltipster-sidetip.default.tooltipster-default-customized {
+    .tooltipster-box {
+        background: #fff;
+        border: 1px solid #999;
+        border-radius: 0px;
+
+        max-width: 370px;
+    }
+    .tooltipster-content {
+        color: #333;
+        @include breakpoint($mobile_above) {
+            font-size: $fz-content;
+        }
+        @include breakpoint($mobile) {
+            font-size: $fz-content_m;
+        }
+
+        li,
+        p,
+        span,
+        a {
+            @include breakpoint($mobile_above) {
+                font-size: $fz-content;
+            }
+            @include breakpoint($mobile) {
+                font-size: $fz-content_m;
+            }
+        }
+    }
+    &.tooltipster-bottom .tooltipster-arrow-background {
+        border-bottom-color: #fff;
+    }
+    &.tooltipster-left .tooltipster-arrow-background {
+        border-left-color: #fff;
+    }
+    &.tooltipster-right .tooltipster-arrow-background {
+        border-right-color: #fff;
+    }
+    &.tooltipster-top .tooltipster-arrow-background {
+        border-top-color: #fff;
+    }
+    &.tooltipster-bottom .tooltipster-arrow-border {
+        border-bottom-color: #999;
+    }
+    &.tooltipster-left .tooltipster-arrow-border {
+        border-left-color: #999;
+    }
+    &.tooltipster-right .tooltipster-arrow-border {
+        border-right-color: #999;
+    }
+    &.tooltipster-top .tooltipster-arrow-border {
+        border-top-color: #999;
+    }
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-box {
+    margin-bottom: 9px !important;
+}
+
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-background {
+    top: -2px !important;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-box {
+    margin-top: 9px !important;
+}
+
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-background {
+    top: 2px !important;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-box {
+    margin-right: 9px !important;
+}
+
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-background {
+    left: -2px !important;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-box {
+    margin-left: 9px !important;
+}
+
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
+    left: 2px !important;
+}
+
+.htmltooltip {
+    .tooltip_content {
+        display: none;
+    }
+}
+
+.tooltipster-sidetip .tooltipster-content {
+    padding: 1rem !important;
+}
+
+.tooltipster-content {
+    ul {}
+}
+
+/* jQuery Countdown styles 1.6.3. */
+
+.hasCountdown {
+    // border: 1px solid #ccc;
+    // background-color: #eee;
+    overflow: hidden;
+    min-width: 9.5rem;
+}
+
+.countdown_rtl {
+    direction: rtl;
+}
+
+.countdown_holding span {
+    color: #888;
+}
+
+.countdown_row {
+    clear: both;
+    width: 100%;
+    padding: 0px 2px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 28px;
+
+    &::before {
+        content: "Time Left : ";
+        float: left;
+        display: inline-block;
+        margin-right: .5rem;
+        @include breakpoint($mobile_above) {
+            font-size: $fz-content;
+        }
+        @include breakpoint($mobile) {
+            font-size: $fz-content_m;
+        }
+    }
+}
+
+.countdown_show1 .countdown_section {
+    width: 98%;
+}
+
+.countdown_show2 .countdown_section {
+    width: 45%;
+    max-width: 28px;
+    height: 28px;
+}
+
+.countdown_show3 .countdown_section {
+    width: 32.5%;
+}
+
+.countdown_show4 .countdown_section {
+    width: 24.5%;
+}
+
+.countdown_show5 .countdown_section {
+    width: 19.5%;
+}
+
+.countdown_show6 .countdown_section {
+    width: 16.25%;
+}
+
+.countdown_show7 .countdown_section {
+    width: 14%;
+}
+
+.countdown_section {
+    display: block;
+    float: left;
+    font-size: 75%;
+    text-align: center;
+
+    font-size: 0;
+
+    background-color: $color-orange03;
+    border-radius: 4px;
+    &:first-of-type {}
+
+    &+.countdown_section {
+        margin-left: 10px;
+        position: relative;
+        &::before {
+
+            content: ":";
+            width: 10px;
+            left: -10px;
+            display: inline-block;
+            position: absolute;
+            font-size: 1rem;
+        }
+    }
+}
+
+.countdown_amount {
+    // font-size: 200%;
+    @include breakpoint($mobile_above) {
+        font-size: $fz-subtitle;
+    }
+    @include breakpoint($mobile) {
+        font-size: $fz-subtitle_m;
+    }
+    color: $color-white
+}
+
+.countdown_descr {
+    display: block;
+    width: 100%;
+}
+
+.blocker {
+
+    @include breakpoint($bp_header) {
+        z-index: 1001 !important;
+    }
+
+    @include breakpoint($bp_mobheader) {
+        padding: 59px 0 0 0 !important;
+        z-index: 2 !important;
+    }
+    .modal {
+        // z-index: 99;
+        @include breakpoint($bp_header) {
+            max-width: 700px;
+        }
+        @include breakpoint($bp_mobheader) {
+            min-height: 100%;
+            width: 100% !important;
+            max-width: none !important;
+            padding: 15px;
+            overflow: hidden;
+
+            @include border-radius(0px)
+        }
+
+        a.close-modal {
+            background-image: url('/ev/images/cross.png');
+
+            height: 18px;
+            width: 18px;
+            background-size: 100%;
+            top: 15px;
+            right: 15px;
+            @include breakpoint($bp_mobheader) {
+                margin-top: 25px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    }
+}

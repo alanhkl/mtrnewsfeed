@@ -1,0 +1,28 @@
+{
+  "minify": true,
+  "options": [
+    "hasEvent",
+    "mq",
+    "html5printshiv",
+    "html5shiv",
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/canvas",
+    "test/cookies",
+    "test/geolocation",
+    "test/history",
+    "test/htmlimports",
+    "test/json",
+    "test/touchevents",
+    "test/video",
+    "test/css/animations",
+    "test/css/backgroundsize",
+    "test/css/flexbox",
+    "test/css/flexboxlegacy",
+    "test/network/fetch",
+    "test/storage/localstorage",
+    "test/video/autoplay",
+    "test/workers/webworkers"
+  ]
+}

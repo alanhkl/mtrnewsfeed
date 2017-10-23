@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7  " lang="en" <![endif] -->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8  " lang="en"> <![endif] -->
+<!--[if IE 8]>         <html class="no-js lt-ie9  " lang="en"> <![endif] -->
+<!--[if gt IE 8]><! -->
+<html class="no-js " lang="en">
+<!--<![endif] -->
+
+<head>
+    <title>EV - Home</title>
+    @@include('./../include/meta_global.html') @@include('./../en/include/meta.html') @@include('./../include/font.html') @@include('./../include/css.html') @@include('./../include/libs.html') @@include('./../include/preloadscript.html') @@include('./../include/plugin.html') @@include('./../include/social.html') @@include('./../include/tracking.html')
+
+    <script charset="UTF-8" type="text/javascript" src="./../js/home.js"></script>
+
+</head>
+
+<body class="page home">
+    @@include('./../en/include/init.html')
+    <!--[if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://www.microsoft.com/en-hk/download/internet-explorer.aspx">upgrade your browser</a> to improve your experience.</p> <![endif] -->
+    <div class="layout-page  main-container">
+        @@include('./../en/include/header.html')
+        <div class="main-content  ">
+            <div class="main-content__inner  ">
+                <div class="section">
+                    <div class="page-title">
+                        <div class="text">Search for a charging location</div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="map map__home">
+                        <div class="map-search">
+                            <div class="upper">
+                                <div class="map-search__search-input ">
+                                    <div class="keywordsearch">
+                                        <input id="evcmap_index" type="text" />
+                                        <input type="hidden" name="lng" id="longitude_index" />
+                                        <input type="hidden" name="lat" id="latitude_index" />
+                                        <a href="javascript:SearchCharger();" role="button"><img src="/ev/images/btn-search.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lower">
+                                <div class="col-left">
+                                    @@include('./../en/include/historylist.html')
+                                </div>
+                                <div class="col-right">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map-mapview">
+                            <div id="map"></div>
+                            <div class="map-layer">
+                                <div class="map-layer_inner">
+                                    @@include('./../en/include/pindescription.html')
+                                </div>
+                            </div>
+                            <div id="pininfoBox" class="infoBox"></div>
+                        </div>
+
+                        <div class="overlay">
+                            <div class="loading">
+                                @@include('./../include/loading.html')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="home__explorer1">
+                        <div class="home__explorer1_inner">
+                            <div class="title">Our Low Carbon Driving Journey</div>
+                            <div class="content">
+                                <div class="des">CLP Power is committed to promoting clean transportation in Hong Kong through eduction and collaboration with governmnet and community.</div>
+                                <div class="btn"><a href="/ev/en/ourlowcarbondrivingjourney.html" role="button">More Details</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="home__explorer2">
+                        <div class="home__explorer2_inner">
+                            <a href="/ev/en/ecocharge.html#eco_charge" class="feature feature1">
+                                <span class="text">Eco Charge - Own a Charger</span>
+                                <span class="bg"><img src="/ev/images/home-thumb-01.jpg" alt=""></span>
+                            </a>
+                            <a href="/ev/en/ecocharge.html#successful_case" class="feature feature2">
+                                <span class="text">Successful Cases</span>
+                                <span class="bg"><img src="/ev/images/home-thumb-02.jpg" alt=""></span>
+                            </a>
+                            <a href="/ev/en/ecocharge.html#application_workflow" class="feature feature3">
+                                <span class="text">Application Workflow</span>
+                                <span class="bg"><img src="/ev/images/home-thumb-03.jpg" alt=""></span>
+                            </a>
+                            <a href="/ev/en/ecocharge.html#document_download" class="feature feature4">
+                                <span class="text">Documents Download</span>
+                                <span class="bg"><img src="/ev/images/home-thumb-04.jpg" alt=""></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="home__howto">
+                        <div class="home__howto_inner">
+                            <div class="title">How To Charge</div>
+                            <div class="tabBox  ">
+                                <div class="tab__upper mobile-above-only">
+                                    <div class="tab tab1"><a href="javascript:;">Semi-Quick Charging</a></div>
+                                    <div class="tab tab2"><a href="javascript:;">Quick Charging</a></div>
+                                </div>
+                                <div class="tab__lower">
+                                    <div class="slider tabContentbox">
+                                        <div class="slide">
+                                            <div class="slidetitle mobile-only">
+                                                <div class="text">Semi-Quick Charging</div>
+                                            </div>
+                                            <div class="hero">
+                                                <img src="./../images/something-u-may-know-01.jpg" alt="" class="bg mobile-above-only">
+                                                <img src="./../images/something-u-may-know-01.jpg" alt="" class="bg mobile-only">
+                                                <a class="playbutton popup-video" data-video-id="di8Lgafq3Q0"><img src="./../images/icon-video-play.png" alt=""></a>
+                                            </div>
+                                            <div class="overlay">
+                                                <div class="col-left">
+                                                    <!-- <div class="title">Video Learning</div>
+                                                    <div class="des">A step-by-step guide to show you how to charge up your electric vehicle at destinated public car park.</div> -->
+                                                </div>
+                                                <div class="col-right">
+                                                    <a href="/ev/en/howtocharge_stdandsemi.html" role="button">More Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slide">
+                                            <div class="slidetitle mobile-only">
+                                                <div class="text">Quick Charging</div>
+                                            </div>
+                                            <div class="hero">
+                                                <img src="./../images/something-u-may-know-02.jpg" alt="" class="bg mobile-above-only">
+                                                <img src="./../images/something-u-may-know-02.jpg" alt="" class="bg mobile-only">
+                                                <a class="playbutton popup-video" data-video-id="Ao07aDFnAZk">
+                                                    <img src="./../images/icon-video-play.png" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="overlay">
+                                                <div class="col-left">
+                                                    <!-- <div class="title">Video Learning</div>
+                                                    <div class="des">A step-by-step guide to show you how to charge up your electric vehicle at destinated public car park.</div> -->
+                                                </div>
+                                                <div class="col-right">
+                                                    <a href="/ev/en/howtocharge_quick.html" role="button">More Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @@include('./../en/include/footer.html')
+    </div>
+    @@include('./../en/include/backtotop.html') @@include('./../include/script.html')   @@include('./../en/include/feedback.html')  @@include('./../include/tracking_2.html') @@include('./../include/map.html')
+</body>
+
+
+
+</html>

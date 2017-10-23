@@ -1,0 +1,945 @@
+@charset "utf-8";
+// FONTS
+//CSS3
+$default-prefixes:webkit moz o ms !default;
+$css3-prefixable-value:transform keyframe !default;
+@mixin build-browser-prefix($prop, $value, $prefixes:$default-prefixes) {
+    @each $prefix in $prefixes {
+        -#{$prefix}-#{$prop}:#{$value};
+    }
+    //Default
+    #{$prop}: #{$value};
+}
+
+@mixin border-radius($value:5px) {
+    @include build-browser-prefix(border-radius, $value);
+    @include build-browser-prefix(background-clip, padding-box);
+    @extend %pie !optional;
+}
+
+@mixin box-shadow($value) {
+    @include build-browser-prefix(box-shadow, $value);
+    @extend %pie !optional;
+}
+
+// @mixin transition($list...) {
+//     @include build-browser-prefix(transition, $list);
+// }
+
+@mixin transition-delay($list...) {
+    @include build-browser-prefix(transition-delay, $list);
+}
+
+@mixin animation($value...) {
+    @include build-browser-prefix(animation, $value);
+}
+
+@mixin transform($value...) {
+    @include build-browser-prefix(transform, $value);
+}
+
+@mixin mask($value) {
+    @include build-browser-prefix(mask-image, $value, webkit);
+}
+
+@mixin keyframe($name, $prefixes:$default-prefixes) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-o-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin gradient($from, $to, $xStart:left, $yStart:top, $xEnd:left, $yEnd:bottom) {
+    background-color: $to;
+    background-image: -webkit-linear-gradient($yStart, $from, $to);
+    background-image: -webkit-gradient(linear, $xStart $yStart, $xEnd $yEnd, from($from), to($to));
+    background-image: -moz-linear-gradient($yStart, $from, $to);
+    background-image: -ms-linear-gradient($yStart, $from, $to);
+    background-image: -o-linear-gradient($yStart, $from, $to);
+    background-image: linear-gradient($yStart, $from, $to);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$from}, endColorstr=#{$to});
+}
+
+@function emCalc($pxWidth) {
+    @return $pxWidth / $em-base * 1em;
+}
+
+// MIXINS
+// Clearfix include
+@mixin clear($extend: true) {
+    $valid: true;
+    @if type-of($extend) !="bool" {
+        @warn "extend: #{$extend} is not a boolean";
+        $valid: false;
+    }
+    @if $valid==true {
+        @if $extend {
+            @extend %clear;
+        }
+        @else {
+            #{'&'}:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        }
+    }
+}
+
+// Placeholder for clear
+%clear:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* ----------------------------------------------------------------------------------------------------
+SCSS Form Reset Helpers - Forked from: https://gist.github.com/anthonyshort/552543
+Intended usage:
+- MIXINS: for very specific use cases, when you dont want to reset absolutly all the forms, very verbose output.
+- PLACEHOLDER SELECTORS: use as extending classes. Less verbose, more generic overrides.
+A couple of things to watch out for:
+- IE8: If a text input doesn't have padding on all sides or none the text won't be centered.
+- The default border sizes on text inputs in all UAs seem to be slightly different. You're better off using custom borders.
+- You NEED to set the font-size and family on all form elements
+- Search inputs need to have their appearance reset and the box-sizing set to content-box to match other UAs
+- You can style the upload button in webkit using ::-webkit-file-upload-button
+- ::-webkit-file-upload-button selectors can't be used in the same selector as normal ones. FF and IE freak out.
+- IE: You don't need to fake inline-block with labels and form controls in IE. They function as inline-block.
+- By turning off ::-webkit-search-decoration, it removes the extra whitespace on the left on search inputs
+----------------------------------------------------------------------------------------------------*/
+
+@mixin form-reset-general {
+    display: inline-block;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    width: auto;
+    vertical-align: middle; // IE6,IE7
+    white-space: normal;
+    line-height: inherit;
+    background: none;
+    font-weight: normal;
+    /* Browsers have different default form fonts */
+    color: inherit;
+    font-size: .875rem;
+    font-family: inherit;
+}
+
+%form-reset-general {
+    @include form-reset-general;
+}
+
+@mixin form-reset-special-box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+%form-reset-special-box-sizing {
+    @include form-reset-special-box-sizing;
+}
+
+@mixin form-reset-input-specific {
+    &:focus {
+        outline: 0;
+    }
+    &[type=checkbox],
+    &[type=radio] {
+        width: 13px;
+        height: 13px;
+    }
+    /* Make webkit render the search input like a normal text field */
+    &[type=search] {
+        -webkit-appearance: textfield;
+        -webkit-box-sizing: content-box;
+    }
+    /* Turn off the recent search for webkit. It adds about 15px padding on the left */
+    //   @at-root {
+    //     ::-webkit-search-decoration {
+    //       display: none;
+    //     }
+    //   }
+    /* Fix IE7 display bug */
+    &[type="reset"],
+    &[type="button"],
+    &[type="submit"] {
+        overflow: visible;
+    }
+}
+
+@mixin form-reset-input {
+    @include form-reset-general;
+    @include form-reset-input-specific;
+    /* These elements are usually rendered a certain way by the browser */
+    &[type=reset],
+    &[type=button],
+    &[type=submit],
+    &[type=checkbox],
+    &[type=radio] {
+        @include form-reset-special-box-sizing;
+    }
+}
+
+%form-reset-input {
+    @extend %form-reset-general;
+    @include form-reset-input-specific;
+    /* These elements are usually rendered a certain way by the browser */
+    &[type=reset],
+    &[type=button],
+    &[type=submit],
+    &[type=checkbox],
+    &[type=radio] {
+        @extend %form-reset-special-box-sizing;
+    }
+}
+
+@mixin form-reset-label {
+    @include form-reset-general;
+}
+
+%form-reset-label {
+    @extend %form-reset-general;
+}
+
+@mixin form-reset-select-specific {
+    /* Move the label to the top */
+    &[multiple] {
+        vertical-align: top;
+        option {
+            font-weight: normal;
+        }
+    }
+}
+
+@mixin form-reset-select {
+    @include form-reset-general;
+    @include form-reset-special-box-sizing;
+    @include form-reset-select-specific;
+}
+
+%form-reset-select {
+    @extend %form-reset-general;
+    @extend %form-reset-special-box-sizing;
+    @include form-reset-select-specific;
+    option {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+    }
+}
+
+@mixin form-reset-button-specific {
+    background: none;
+    border: 0;
+    outline: none;
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        outline: 0;
+    }
+    /* IE8 and FF freak out if this rule is within another selector */
+}
+
+@mixin form-reset-button {
+    @include form-reset-general;
+    @include form-reset-button-specific;
+}
+
+%form-reset-button {
+    @extend %form-reset-general;
+    @include form-reset-button-specific;
+}
+
+@mixin form-reset-textarea-specific {
+    /* Move the label to the top */
+    vertical-align: top;
+    /* Turn off scroll bars in IE unless needed */
+    overflow: auto;
+}
+
+@mixin form-reset-textarea {
+    @include form-reset-general;
+    @include form-reset-textarea-specific;
+}
+
+%form-reset-textarea {
+    @extend %form-reset-general;
+    @include form-reset-textarea-specific;
+}
+
+// Text hider
+@mixin hide-text($extend: true) {
+    $valid: true;
+    @if type-of($extend) !="bool" {
+        @warn "extend: #{$extend} is not a boolean";
+        $valid: false;
+    }
+    @if $valid==true {
+        @if $extend {
+            @extend %hide-text;
+        }
+        @else {
+            overflow: hidden;
+            text-indent: 100%;
+            white-space: nowrap;
+        }
+    }
+}
+
+// Placeholder for hide-text
+%hide-text {
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+// Inline List
+@mixin inline-list($float: true) {
+    $valid: true;
+    @if type-of($float) !="bool" {
+        @warn "float: #{$float} is not a boolean";
+        $valid: false;
+    }
+    @if $valid==true {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        >li {
+            @if $float==true {
+                display: block;
+                float: left;
+            }
+            @else {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+// Class for extend
+@mixin opacity($value) {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+($value*100)+")";
+    filter: alpha(opacity=$value*100);
+    -moz-opacity: $value;
+    -khtml-opacity: $value;
+    opacity: $value;
+}
+
+@mixin equal-height($paddingBottom:0px) {
+    overflow: hidden;
+    position: relative;
+    &>* {
+        padding-bottom: 5000px+$paddingBottom !important;
+        margin-bottom: -5000px !important;
+    }
+}
+
+@mixin swap-img($invert:false) {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    @if $invert==false {
+        background-position: left top;
+    }
+    @else {
+        background-position: left bottom;
+    }
+    &.hover,
+    &.active,
+    &:hover span {
+        @if $invert==false {
+            background-position: left bottom;
+        }
+        @else {
+            background-position: left top;
+        }
+    }
+    ;
+}
+
+//CSS2
+@mixin arrow($dir:top, $width:5px, $height:5px, $color:#FFF) {
+    //Default Top
+    $opposite: bottom;
+    $edges: left right;
+    @if $dir==bottom {
+        $opposite: top;
+        $edges: left right;
+    }
+    @else if $dir==left {
+        $opposite: right;
+        $edges: top bottom;
+        $temp: $width;
+        $width: $height;
+        $height: $temp;
+    }
+    @else if $dir==right {
+        $opposite: left;
+        $edges: top bottom;
+        $temp: $width;
+        $width: $height;
+        $height: $temp;
+    }
+    border-#{$opposite}:$width solid $color;
+    @each $edge in $edges {
+        border-#{$edge}: $height solid transparent;
+    }
+    width:0px;
+    height:0px;
+    display:block;
+}
+
+@mixin loading {
+    .loading {
+        overflow: hidden;
+        background-image: url($ajax-loader-gif);
+        background-repeat: no-repeat;
+        background-position: center center;
+        &>* {
+            visibility: hidden;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+    }
+}
+
+// checkbox style with label
+// *radio can use too
+// **lower ie8 show default style
+// html:
+//	<input type="checkbox" id="c1" name="checkbox" />
+//	<label for="c1">xxx</label>
+@mixin checkbox($checkboxImg:$base-checkbox-img, $checkboxSize: $base-checkbox-size) {
+    $checkboxWidth: 0;
+    $checkboxHeight: 0;
+    @if (length($checkboxSize)>1) {
+        $checkboxWidth: nth($checkboxSize, 1);
+        $checkboxHeight: nth($checkboxSize, length($checkboxSize));
+    }
+    @else {
+        $checkboxWidth: $checkboxSize;
+        $checkboxHeight: $checkboxSize;
+    }
+    //display: none;
+    @include opacity(0);
+    position: absolute;
+    z-index: -100;
+    +label {
+        display: inline-block;
+        min-height: $checkboxHeight;
+        padding-left: $checkboxWidth+ 5;
+        line-height: $checkboxHeight;
+        background: url($checkboxImg) left top no-repeat;
+    }
+    &:checked {
+        +label {
+            background-position: left (-$checkboxHeight);
+        }
+    }
+    &:disabled {
+        +label {
+            @include opacity(0.7);
+            cursor: default;
+        }
+    }
+    @include lower-ie8() {
+        display: inline-block;
+        @include opacity(1);
+        position: static;
+        z-index: 0;
+        +label {
+            min-height: 0;
+            padding-left: 5px;
+            background: none;
+        }
+    }
+}
+
+// select style
+// lower ie9 can't change arrow with css
+@mixin select($selectBgColor: $base-select-background-color, $selectColor: $base-select-font-color, $selectBorder: $base-select-border, $selectArrow: $base-select-arrow-img, $selectArrowSize: $base-select-arrow-size) {
+    $selectArrowHeight: 0;
+    $selectArrowWidth: 0;
+    @if (length($selectArrowSize)>1) {
+        $selectArrowHeight: nth($selectArrowSize, length($selectArrowSize));
+        $selectArrowWidth: nth($selectArrowSize, 1);
+    }
+    @else {
+        $selectArrowHeight: $selectArrowSize;
+        $selectArrowWidth: $selectArrowSize;
+    }
+    border: $selectBorder !important;
+    min-height: $selectArrowHeight;
+    padding: 5px;
+    text-indent: 0.01px;
+    text-overflow: "";
+    color: $selectColor;
+    position: relative;
+    @if $selectArrow !='' {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: $selectBgColor url($selectArrow) no-repeat right center;
+        padding-right: nth($selectArrowWidth, 1)+5;
+        padding-right: 5px \9; // fix ie9
+        background-image: none \9; // fix ie9
+        &::-ms-expand {
+            display: none;
+            display: inline-block \9; // fix ie10pp4
+            opacity: 0 \9; // fix ie10pp4
+        }
+    }
+    @else {
+        background: $selectBgColor;
+    }
+    &:disabled {
+        @include opacity(0.7);
+        cursor: default;
+    }
+}
+
+// input text style
+@mixin textbox($textBgColor:$base-textbox-background-color, $textColor: $base-textbox-font-color, $textBorderColor: $base-textbox-border-color, $textBorder: $base-textbox-border-style) {
+    $hasHover: false;
+    $textHoverBgColor: $textBgColor;
+    $textHoverColor: $textColor;
+    $textHoverBorderColor: $textBorderColor;
+    @if (length($textBgColor)>1) {
+        $textHoverBgColor: nth($textBgColor, length($textBgColor));
+        $hasHover: true;
+    }
+    background-color: nth($textBgColor, 1);
+    @if (length($textColor)>1) {
+        $textHoverColor: nth($textColor, length($textColor));
+        $hasHover: true;
+    }
+    color: nth($textColor, 1);
+    @if (length($textBorderColor)>1) {
+        $textHoverBorderColor: nth($textBorderColor, length($textBorderColor));
+        $hasHover: true;
+    }
+    @if ($textBorderColor==none) {
+        border: none;
+    }
+    @else {
+        border: $textBorder nth($textBorderColor, 1);
+    }
+    &:disabled {
+        @include opacity(0.7);
+        cursor: default;
+    }
+    @if ($hasHover) {
+        &:focus,
+        &:hover {
+            background-color: $textHoverBgColor;
+            color: $textHoverColor;
+            @if ($textHoverColor==none) {
+                border: none;
+            }
+            @else {
+                border: $textBorder $textHoverColor;
+            }
+            &:disabled {
+                background-color: nth($textBgColor, 1);
+                color: nth($textColor, 1);
+                @if ($textBorderColor==none) {
+                    border: none;
+                }
+                @else {
+                    border: $textBorder nth($textBorderColor, 1);
+                }
+            }
+        }
+    }
+}
+
+// lower ie8 style
+@mixin lower-ie8() {
+    @media screen and (min-width: 0\0) {
+        @content;
+    }
+}
+
+@mixin transition( $t:background, $d:0.2s, $a:ease) {
+    -webkit-transition: $t $d $a;
+    -moz-transition: $t $d $a;
+    -o-transition: $t $d $a;
+    -ms-transition: $t $d $a;
+    transition: $t $d $a;
+}
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+@mixin scale($scale) {
+    @include transform(scale($scale));
+}
+
+@mixin translate ($x, $y) {
+    @include transform(translate($x, $y));
+}
+
+@mixin skew ($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+// Wraps interior content in a media query
+@mixin breakpoint($querystring) {
+    $valid: true;
+    @if type-of($querystring) !="string" {
+        @warn "querystring: #{$querystring} is not a string";
+        $valid: false;
+    }
+    @if $valid==true {
+        @media #{$querystring} {
+            @content;
+        }
+    }
+}
+
+// MIXINS - HACKY FIX
+@mixin inlineBlockAlign($vert-align:middle, $text-align:center, $height:100%,$font-size:0px) {
+    display: inline-block;
+    vertical-align: $vert-align;
+    font-size: $font-size;
+    &:before {
+        font-size: 0px;
+        display: inline-block;
+        content: "";
+        height: $height;
+        vertical-align: $vert-align;
+        text-align: $text-align;
+        width: 0px;
+    }
+}
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+    >* {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+@mixin ellipsis($width: 100%) {
+    $valid: true;
+    @if type-of($width) !="number" {
+        @warn "width: #{$width} is not a number";
+        $valid: false;
+    }
+    @if $valid==true {
+        display: inline-block;
+        max-width: $width;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@mixin style_inherit {
+    &>a:not([role="button"]) {
+        // vertical-align: inherit;
+        text-decoration: inherit;
+        color: inherit;
+        letter-spacing: inherit;
+        white-space: inherit;
+        font: inherit;
+        text-overflow: inherit;
+    }
+}
+
+@mixin ellipsis_multiline ($max-height, $lines: 2) {
+    // Fallback for non-webkit browsers.
+    // Fallback does not render ellipsis.
+    overflow: hidden;
+    max-height: $max-height;
+    // Webkit solution for multiline ellipsis
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    // Solution for Opera
+    text-overflow: -o-ellipsis-lastline;
+}
+
+/* mixin for multiline */
+
+@mixin ellipsis_multiline_ie($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount;
+    text-align: justify;
+    margin-right: -1em;
+    padding-right: 1em;
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: $bgColor;
+    }
+}
+
+// Text hider
+@mixin hide-text($extend: true) {
+    $valid: true;
+    @if type-of($extend) !="bool" {
+        @warn "extend: #{$extend} is not a boolean";
+        $valid: false;
+    }
+    @if $valid==true {
+        @if $extend {
+            @extend %hide-text;
+        }
+        @else {
+            overflow: hidden;
+            text-indent: 100%;
+            white-space: nowrap;
+        }
+    }
+}
+
+@mixin linearGradient($top, $bottom) {
+    background: $top;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $top), color-stop(100%, $bottom));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $top 0%, $bottom 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $top 0%, $bottom 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $top 0%, $bottom 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, $top 0%, $bottom 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000', GradientType=0);
+    /* IE6-9 */
+}
+
+// Placeholder for hide-text
+%hide-text {
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+@mixin adaptive_breakpoint($extend: true) {
+    $valid: true;
+    @if type-of($extend) !="bool" {
+        @warn "extend: #{$extend} is not a boolean";
+        $valid: false;
+    }
+    @if $valid==true {
+        @if $extend {
+            @extend %adaptive;
+        }
+        @else {
+            @include breakpoint($desktop) {
+                min-width: 0px;
+            }
+            @include breakpoint($tablet) {
+                min-width: 0px;
+            }
+            @include breakpoint($mobile) {}
+            @include breakpoint($s_mobile) {
+                min-width: 0px;
+            }
+        }
+    }
+}
+
+%adaptive {
+    @include breakpoint($desktop) {
+        min-width: $layout-maxwidth;
+    }
+    @include breakpoint($tablet) {
+        // min-width: $layout-maxwidth;
+    }
+    @include breakpoint($mobile) {}
+    @include breakpoint($s_mobile) {
+        min-width: 320px;
+        //    width: $width-tablet
+    }
+}
+
+%cleardeco {
+    a {
+        text-decoration: none;
+        border-bottom: 0px !important;
+        &:hover {
+            border-bottom: 0px !important;
+        }
+    }
+}
+
+%optimize-font {
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+%listBlock_nil {
+    display: inline-block;
+    width: 100%;
+    li {
+        line-height: 1em;
+        display: list-item;
+        width: 100%;
+        height: auto;
+    }
+}
+
+%basicfont {
+    color: #555555;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    @include breakpoint($mobile) {
+        font-size: .7rem;
+    }
+    @include breakpoint($s_mobile) {
+        font-size: .7rem;
+    }
+    p,
+    td,
+    th,
+    img,
+    span {
+        font-size: inherit;
+        // width: initial;
+    }
+}
+
+%normalLink--underline {
+    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+%normalLink {
+    text-decoration: none;
+    &:hover {
+        @extend %normalLink--underline;
+    }
+}
+
+%ul--normaldot {
+    /*display: list-item;*/
+    margin-top: .5em;
+    margin-bottom: .5em;
+    >li {
+        padding-left: 1em;
+        line-height: 1.3;
+        display: list-item;
+        @include breakpoint($mobile) {}
+        &:before {
+            display: inline-block;
+            content: '\00b7  \0020';
+            margin-left: -1em;
+            width: .5rem;
+        }
+        +li {
+            // margin-top: .3em;
+        }
+    }
+}
+
+%ul--nodot {
+    display: inline-block;
+    margin: 0;
+    font-size: 0;
+    >li {
+        padding-left: 0;
+        line-height: 1.3;
+        display: inline-block;
+        &:before {
+            // display: none;
+            content: '';
+            margin-left: 0;
+        }
+        +li {
+            margin: 0;
+        }
+    }
+}
+
+.full-width {
+  left: 50%;
+  margin-left: -50vw;
+  position: relative;
+  width: 100vw;
+  height: 100px;
+  background: tomato;
+}
+
+@mixin bgc-opacity($color, $opacity: 0.3) {
+    background-color: $color; /* The Fallback */
+    background-color: rgba($color, $opacity);
+}
+
+/*
+ * Provide a hover effect for non-touch devices, turn it into an Active state for mobile, and maintain a fallback.
+ * @requires Modernizr as a JS dependency to get .no-touch classes
+ * Adds styles via @content
+ */
+@mixin touch-hover() {
+    .no-js &:hover, // the fallback
+    .no-js &:focus,
+    .js.no-touch &:hover, // enhanced for no-touch
+    .js.no-touch &:focus,
+    .js.touch &:active { // relay same styles to active for touch devices
+        @content;
+    }
+}

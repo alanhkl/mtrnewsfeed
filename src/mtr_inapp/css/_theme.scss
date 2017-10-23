@@ -1,0 +1,27 @@
+.theme--blue01 {
+    color: $color-white;
+    background-color: $color-blue01;
+    border-color: $color-white;
+}
+
+.theme--blue02 {
+    color: $color-white;
+    background-color: $color-blue02;
+    border-color: $color-white;
+}
+
+.theme--default01 {
+    color: $color-grey07;
+    background-color: $color-white;
+}
+
+.theme--grey01 {
+    color: $color-black;
+    background-color: $color-grey01;
+}
+
+.btn--go {
+    border: 1px solid $color-blue01;
+    color: $color-white;
+    background-color: $color-blue02;
+}

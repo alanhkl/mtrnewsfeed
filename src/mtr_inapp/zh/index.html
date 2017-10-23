@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7  " lang="zh" <![endif] -->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8  " lang="zh"> <![endif] -->
+<!--[if IE 8]>         <html class="no-js lt-ie9  " lang="zh"> <![endif] -->
+<!--[if gt IE 8]><! -->
+<html class="no-js" lang="zh">
+<!--<![endif] -->
+
+<head>
+    <title>電動車 - 主頁</title>
+    @@include('./../include/meta_global.html') @@include('./../zh/include/meta.html') @@include('./../include/font.html') @@include('./../include/css.html') @@include('./../include/libs.html') @@include('./../include/preloadscript.html') @@include('./../include/plugin.html')
+    @@include('./../include/social.html') @@include('./../include/tracking.html')
+
+    <script charset="UTF-8" type="text/javascript" src="./../js/home.js"></script>
+
+</head>
+
+<body class="page home">
+
+        @@include('./../zh/include/init.html')
+    <!--[if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="https://www.microsoft.com/en-hk/download/internet-explorer.aspx">upgrade your browser</a> to improve your experience.</p> <![endif] -->
+    <div class="layout-page  main-container">
+            @@include('./../zh/include/header.html')
+        <div class="main-content  ">
+            <div class="main-content__inner  ">
+                <div class="section">
+                    <div class="page-title">
+                        <div class="text">搜尋充電站 </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="map map__home">
+                        <div class="map-search">
+                            <div class="upper">
+                                <div class="map-search__search-input ">
+                                    <div class="keywordsearch">
+                                        <input id="evcmap_index" type="text" placeholder="輸入地點" />
+                                        <input type="hidden" name="lng" id="longitude_index" />
+                                        <input type="hidden" name="lat" id="latitude_index" />
+                                        <a href="javascript:SearchCharger();" role="button"><img src="/ev/images/btn-search.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lower">
+                                <div class="col-left">
+                                    @@include('./../zh/include/historylist.html')
+                                </div>
+                                <div class="col-right">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map-mapview">
+                            <div id="map"></div>
+                            <div class="map-layer">
+                                <div class="map-layer_inner">
+                                    @@include('./../zh/include/pindescription.html')
+                                </div>
+                            </div>
+                            <div id="pininfoBox" class="infoBox"></div>
+                        </div>
+
+                        <div class="overlay">
+                            <div class="loading">
+                                @@include('./../include/loading.html')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="home__explorer1">
+                        <div class="home__explorer1_inner">
+                            <div class="title">中電低碳駕駛歷程
+                                </div>
+                            <div class="content">
+                                <div class="des">中電致力透過公眾教育、以及與政府和社會各界合作，在香港推行潔淨運輸。
+                                    </div>
+                                <div class="btn"><a href="/ev/zh/ourlowcarbondrivingjourney.html" role="button">了解更多</a></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="home__explorer2">
+                        <div class="home__explorer2_inner">
+                            <a href="/ev/zh/ecocharge.html#eco_charge" class="feature feature1" >
+                                <span class="text">智易充 - 安裝充電裝置
+                                    </span>
+                                <span class="bg"><img src="/ev/images/home-thumb-01.jpg" alt=""></span>
+                            </a>
+                            <a href="/ev/zh/ecocharge.html#successful_case" class="feature feature2" >
+                                <span class="text">成功個案
+                                    </span>
+                                <span class="bg"><img src="/ev/images/home-thumb-02.jpg" alt=""></span>
+                            </a>
+                            <a href="/ev/zh/ecocharge.html#application_workflow" class="feature feature3" >
+                                <span class="text">申請程序
+                                    </span>
+                                <span class="bg"><img src="/ev/images/home-thumb-03.jpg" alt=""></span>
+                            </a>
+                            <a href="/ev/zh/ecocharge.html#document_download" class="feature feature4" >
+                                <span class="text">下載表格
+                                    </span>
+                                <span class="bg"><img src="/ev/images/home-thumb-04.jpg" alt=""></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="home__howto">
+                        <div class="home__howto_inner">
+                            <div class="title">如何充電</div>
+                            <div class="tabBox  ">
+                                <div class="tab__upper mobile-above-only">
+                                    <div class="tab tab1"><a href="javascript:;">中速充電</a></div>
+                                    <div class="tab tab2"><a href="javascript:;">快速充電</a></div>
+                                </div>
+                                <div class="tab__lower">
+                                    <div class="slider tabContentbox">
+                                        <div class="slide">
+
+                                            <div class="slidetitle mobile-only">
+                                                <div class="text">中速充電</div>
+                                            </div>
+                                            <div class="hero">
+                                                <img src="./../images/something-u-may-know-01.jpg" alt="" class="bg mobile-above-only">
+                                                <img src="./../images/something-u-may-know-01.jpg" alt="" class="bg mobile-only">
+                                                <a class="playbutton popup-video" data-video-id="phP83GgCxB4"><img src="./../images/icon-video-play.png" alt=""></a>
+                                            </div>
+                                            <div class="overlay">
+                                                <div class="col-left">
+                                                    <!-- <div class="title">如何充電</div>
+                                                    <div class="des">中電在指定公共停車場設置之充電站的使用方法簡介。</div> -->
+                                                </div>
+                                                <div class="col-right">
+                                                    <a href="/ev/zh/howtocharge_stdandsemi.html" role="button">了解更多</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slide">
+                                            <div class="slidetitle mobile-only">
+                                                <div class="text">快速充電</div>
+                                            </div>
+                                            <div class="hero">
+                                                <img src="./../images/something-u-may-know-02.jpg" alt="" class="bg mobile-above-only">
+                                                <img src="./../images/something-u-may-know-02.jpg" alt="" class="bg mobile-only">
+                                                <a class="playbutton popup-video" data-video-id="ChulOnk4yAQ">
+                                                    <img src="./../images/icon-video-play.png" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="overlay">
+                                                <div class="col-left">
+                                                    <!-- <div class="title">如何充電</div>
+                                                    <div class="des">中電在指定公共停車場設置之充電站的使用方法簡介。</div> -->
+                                                </div>
+                                                <div class="col-right">
+                                                    <a href="/ev/zh/howtocharge_quick.html" role="button">了解更多</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @@include('./../zh/include/footer.html')
+    </div>
+    @@include('./../zh/include/backtotop.html') @@include('./../include/script.html')   @@include('./../zh/include/feedback.html')  @@include('./../include/tracking_2.html') @@include('./../include/map.html')
+</body>
+
+
+
+</html>
