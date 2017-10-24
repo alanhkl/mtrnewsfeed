@@ -2,40 +2,25 @@
 // FONTS
 // #############################
 // @font-face {
-//     font-family: 'Franklin Gothic Book';
-//     src: url(../fonts/franklin-gothic-book.eot);
-//     src: url('../fonts/franklin-gothic-book.eot?#iefix') format('embedded-opentype'),
-//          url('../fonts/franklin-gothic-book.woff2') format('woff2'),
-//          url('../fonts/franklin-gothic-book.woff') format('woff'),
-//          url('../fonts/franklin-gothic-book.ttf') format('truetype'),
-//          url(../fonts/franklin-gothic-book.svg#FranklinGothic-Book') format('svg);
+//     font-family: 'Roboto Condensed';
+//     src: url('RobotoCondensed-Regular-webfont-webfont.eot');
+//     src: url('RobotoCondensed-Regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('RobotoCondensed-Regular-webfont-webfont.woff2') format('woff2'),
+//          url('RobotoCondensed-Regular-webfont-webfont.woff') format('woff'),
+//          url('RobotoCondensed-Regular-webfont-webfont.ttf') format('truetype'),
+//          url('RobotoCondensed-Regular-webfont-webfont.svg#webfontregular') format('svg');
 //     font-weight: normal;
 //     font-style: normal;
 // }
-
-@font-face {
-    font-family: 'Roboto Condensed';
-    src: url('RobotoCondensed-Regular-webfont-webfont.eot');
-    src: url('RobotoCondensed-Regular-webfont-webfont.eot?#iefix') format('embedded-opentype'),
-         url('RobotoCondensed-Regular-webfont-webfont.woff2') format('woff2'),
-         url('RobotoCondensed-Regular-webfont-webfont.woff') format('woff'),
-         url('RobotoCondensed-Regular-webfont-webfont.ttf') format('truetype'),
-         url('RobotoCondensed-Regular-webfont-webfont.svg#webfontregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
-$font-default: 'Roboto Condensed',Arial,Microsoft JhengHei,sans-serif;
-
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+// $font-default: 'Roboto Condensed',Arial,Microsoft JhengHei,sans-serif;
 // #############################
 // GLOBAL WIDTHS
 // #############################
-$layout-maxwidth: 1680px;
-// $content-maxwidth: 960px;
-$content-maxwidth: 1080px;
-// $content-maxwidth: 960px;
+$layout-maxwidth: 870px;
+
+$content-maxwidth: 870px;
+
 $layout-minwidth: 320px;
 $content-minwidth: 0px;
 
@@ -122,20 +107,16 @@ img {
     background-color: $color-grey02;
 }
 
-$font-default:'Roboto Condensed',
-Arial,
+$font-default : Arial,
 Microsoft JhengHei,
 sans-serif;
-$base-font-family_en: 'Roboto Condensed',
-Arial,
+$base-font-family_en : Arial,
 Microsoft JhengHei,
 sans-serif;
-$base-font-family_tc: 'Roboto Condensed',
-Arial,
+$base-font-family_tc : Arial,
 Microsoft JhengHei,
 sans-serif;
-$base-font-family_sc: 'Roboto Condensed',
-Arial,
+$base-font-family_sc : Arial,
 Microsoft JhengHei,
 sans-serif;
 $base-font-family: $base-font-family_en;

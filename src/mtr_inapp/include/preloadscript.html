@@ -12,8 +12,6 @@ function inappcheckcookie(name) {
     return false
 }
 
-
-
 function inappcheckparam(param) {
     var _param = param
 
@@ -32,55 +30,6 @@ function inappcheckparam(param) {
     }
 }
 
-inappcheckcookie("inapp");
-inappcheckparam("inapp=true");
-
-
-
-function clp_webtrends() {
-
-    // var ua = navigator.userAgent;
-
-
-    var meta_inapp = document.createElement('meta');
-    meta_inapp.name = 'WT.cg_n';
-
-
-    if ((inappcheckcookie("inapp") && !inappcheckparam("inapp=false")) || inappcheckparam("inapp=true") ) {
-
-        meta_inapp.setAttribute('content', 'inapp');
-        document.getElementsByTagName('head')[0].appendChild(meta_inapp);
-        // alert("now in app ");
-
-    } else {
-
-        meta_inapp.setAttribute('content', 'website');
-        document.getElementsByTagName('head')[0].appendChild(meta_inapp);
-        // alert("now not in app ");
-
-    }
-
-};
-
-function settitle() {
-
-    var meta_title = document.createElement('meta');
-    meta_title.name = 'WT.cg_s';
-    meta_title.setAttribute('content', String(document.title));
-
-
-    if (!document.querySelector("meta[name='WT.cg_s']")) {
-        document.getElementsByTagName('head')[0].appendChild(meta_title);
-    } else {
-        document.querySelector("meta[name='WT.cg_s']").setAttribute('content', String(document.title));
-    }
-
-
-
-
-}
-
-clp_webtrends();
-settitle();
-
+// inappcheckcookie("inapp");
+// inappcheckparam("inapp=true");
 </script>

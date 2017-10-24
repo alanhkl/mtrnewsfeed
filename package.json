@@ -53,7 +53,6 @@
     "page-scroll-to-id": "^1.5.8",
     "selectivizr": "^1.0.3",
     "slick-carousel": "^1.6.0",
-    "ua-parser-js": "^0.7.14",
-    "waypoints": "^4.0.1"
+    "ua-parser-js": "^0.7.14"
   }
 }

@@ -18,19 +18,13 @@ var path = require('path');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
-const _srcfolder = "src/mtr_inapp/"
-const _distfolder = "mtr_inapp/"
-const _root = "./"
-const _srcpath = _root + _srcfolder;
-const _distpath = _root + _distfolder;
-
-const dir_vendor = _srcpath + "lib/vendor/"
-const dir_plugin = _srcpath + "lib/plugin/"
+const dir_vendor = "mtr_inapp/lib/vendor/";
+const dir_plugin = "mtr_inapp/lib/plugin/";
 
 gulp.task('serve', ['sass', 'js', 'html'], function() {
     browserSync({
         server: {
-            baseDir: _distpath,
+            baseDir: './',
             middleware: [ssi({
                 baseDir: __dirname + '/',
                 ext: '.html'
@@ -70,24 +64,24 @@ gulp.task('watch:html', ['html'], function(done) {
 });
 
 gulp.task('images', function() {
-    gulp.src(_srcpath + 'images/**/*.{png,jpg,jpeg,svg,gif,JPG}')
+    gulp.src('src/mtr_inapp/images/**/*.{png,jpg,jpeg,svg,gif,JPG}')
 
-        .pipe(gulp.dest(_distpath + 'images'));
+        .pipe(gulp.dest('./mtr_inapp/images'));
     browserSync.reload();
 });
 
 gulp.task('bootstrap', function() {
-    gulp.src(_srcpath + 'images/**/*.{png,jpg,jpeg,gif}')
+    gulp.src('src/mtr_inapp/images/**/*.{png,jpg,jpeg,gif}')
 
-        .pipe(gulp.dest(_distpath + 'images'));
+        .pipe(gulp.dest('./mtr_inapp/images'));
     browserSync.reload();
 });
 gulp.task('css', function() {
-    return gulp.src(_srcpath + 'css/**/*')
-        .pipe(gulp.dest(_distpath + 'css'));
+    return gulp.src('src/mtr_inapp/css/**/*')
+        .pipe(gulp.dest('./mtr_inapp/css'));
 });
 gulp.task('sass', function() {
-    return gulp.src(_srcpath + 'css/**/*.scss')
+    return gulp.src('src/mtr_inapp/css/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true,
@@ -110,7 +104,7 @@ gulp.task('sass', function() {
             ]
         }))
         .pipe(sourcemaps.write('../css'))
-        .pipe(gulp.dest(_distpath + 'css'))
+        .pipe(gulp.dest('./mtr_inapp/css'))
 
 });
 gulp.task('watch:sass', ['sass'], function(done) {
@@ -120,29 +114,29 @@ gulp.task('watch:sass', ['sass'], function(done) {
 });
 
 gulp.task('fonts', function() {
-    return gulp.src(_srcpath + 'fonts/**/*')
-        .pipe(gulp.dest(_distpath + 'fonts'));
+    return gulp.src('src/mtr_inapp/fonts/**/*')
+        .pipe(gulp.dest('./mtr_inapp/fonts'));
 });
 
 gulp.task('media', function() {
-    return gulp.src(_srcpath + 'media/**/*')
-        .pipe(gulp.dest(_distpath + 'media'));
+    return gulp.src('src/mtr_inapp/media/**/*')
+        .pipe(gulp.dest('./mtr_inapp/media'));
 });
 
 gulp.task('vendor', function() {
-    return gulp.src([_srcpath + 'lib/vendor/**/*'])
+    return gulp.src(['src/mtr_inapp/lib/vendor/**/*'])
         .pipe(gulp.dest(dir_vendor));
 });
 
 gulp.task('plugin', function() {
-    return gulp.src([_srcpath + 'lib/plugin/**/*'])
+    return gulp.src(['src/mtr_inapp/lib/plugin/**/*'])
         .pipe(gulp.dest(dir_plugin));
 });
 
 gulp.task('app', function() {
 
-    return gulp.src(_srcpath + 'js/**/*')
-        .pipe(gulp.dest(_distpath + 'js'));
+    return gulp.src('src/mtr_inapp/js/**/*')
+        .pipe(gulp.dest('./mtr_inapp/js'));
 });
 gulp.task('data', function() {
 
